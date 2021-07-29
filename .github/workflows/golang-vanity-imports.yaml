@@ -24,7 +24,8 @@ jobs:
         if: steps.version.outputs.version == 'main'
         working-directory: ./
         run: |
-          make clone https://github.com/revit13/test-vanity-imports.git
+          make generate
+          git clone https://github.com/revit13/test-vanity-imports.git
           git checkout origin/site13
           echo "site/ !!!"
           ls site/
