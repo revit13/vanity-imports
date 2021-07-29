@@ -30,7 +30,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source-directory: ../vangen/fybrik
+          source-directory: vangen/fybrik
           destination-repository-name: 'test-vanity-imports'
           destination-github-username: 'revit13'
           target-branch: gh_actions
