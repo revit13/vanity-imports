@@ -27,6 +27,7 @@ jobs:
           cp -r vanity-imports/vangen/fybrik fybrik-site-branch
           cp -r vanity-imports/vangen/openapi2crd fybrik-site-branch
           cp -r vanity-imports/vangen/crdoc fybrik-site-branch
+          ls fybrik-site-branch/
       - uses: tibdex/github-app-token@v1
         id: generate-token
         with:
