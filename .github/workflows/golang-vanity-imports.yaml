@@ -34,9 +34,9 @@ jobs:
           rm -rf fybrik
           rm -rf openapi2crd
           rm -rf crdoc
-          cp -rf ../fybrik .
-          cp -rf ../openapi2crd .
-          cp -rf ../crdoc .
+          cp -rf ../vangen/fybrik .
+          cp -rf ../vangen/openapi2crd .
+          cp -rf ../vangen/crdoc .
           echo "ls!!!"
           ls
           git add fybrik openapi2crd crdoc
