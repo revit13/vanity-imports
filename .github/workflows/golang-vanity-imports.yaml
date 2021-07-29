@@ -33,7 +33,6 @@ jobs:
           app_id: ${{ secrets.CHARTS_APP_ID }}
           private_key: ${{ secrets.CHARTS_APP_PRIVATE_KEY }}
           repository: revit13/the-mesh-for-data
-          ref: site13
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
