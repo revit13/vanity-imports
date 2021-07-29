@@ -38,7 +38,6 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           path: fybrik-site-branch
-          branch: site13
           signoff: true
           token: ${{ steps.generate-token.outputs.token }}
           title: 'Update charts to new release'
