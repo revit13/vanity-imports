@@ -25,23 +25,14 @@ jobs:
         working-directory: ./
         run: |
           make generate
-      - name: copy files to site
-        run: |
-          ls -l
-          git clone https://github.com/revit13/test-vanity-imports.git
-          cd test-vanity-imports/
-          git checkout origin/gh_actions
-          echo "ls !!!"
-          ls 
-          rm -rf fybrik
-          rm -rf openapi2crd
-          rm -rf crdo
-          cp -rf ../vangen/fybrik revittt
-          cp -rf ../vangen/openapi2crd .
-          cp -rf ../vangen/crdoc .
-          echo "ls!!!"
-          ls
-          git add revittt openapi2crd crdoc
-          git commit -m "Commit for vanity go imports"
-          git push origin HEAD:gh_actions
+      - name: Pushes test file
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source-directory: ../vangen/fybrik
+          destination-repository-name: 'test-vanity-imports'
+          target-branch: gh_actions
+      
+
         
