@@ -30,6 +30,7 @@
           "connectors/opa/testutil",
           "connectors/opa",
           "manager",
+          "manager/revit",
           "manager/controllers/mockup",
           "manager/controllers/utils",
           "manager/controllers/motion",
