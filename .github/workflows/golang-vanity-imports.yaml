@@ -26,7 +26,8 @@ jobs:
         run: |
           make generate
           git clone https://github.com/revit13/test-vanity-imports.git
-          git checkout origin/site13
+          cd test-vanity-imports/
+          git checkout origin/gh_actions
           echo "site/ !!!"
           ls site/
           mv site/go-imports/* ../
