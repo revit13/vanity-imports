@@ -1,40 +1,48 @@
-name: Generate Golang Vanity Imports
+name: Golang Vanity Imports
+
+
 on:
-  push:
-    tags:
-      - 'v*'
-    branches:
-      - main 
   workflow_dispatch:
+
 jobs:
-  generate-golang-vanity-imports:
+  build:
+    name: Golang Vanity Imports
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout vanity-imports repository
+        uses: actions/checkout@v2
         with:
-          fetch-depth: 0
-      - name: setup git config
-        run: |
-          git config --global user.name "GitHub Actions Bot"
-          git config --global user.email "noreply@github.com"
-      - id: version
-        name: Infer version
-        run: echo ::set-output name=version::$(cut -d '.' -f 1,2 <<< "${GITHUB_REF#refs/*/}")
-      - name: Generate Golang Vanity Imports
-        if: steps.version.outputs.version == 'main'
-        working-directory: ./
-        run: |
-          make generate
-      - name: Pushes test file
-        uses: cpina/github-action-push-to-another-repository@main
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+          path: vanity-imports
+      - name: Checkout site branch
+        uses: actions/checkout@v2
         with:
-          source-directory: vangen
-          user-email: "noreply@github.com"
-          destination-repository-name: 'test-vanity-imports'
-          destination-github-username: 'revit13'
-          target-branch: gh_actions
-      
+          repository: revit13/the-mesh-for-data
+          path: fybrik-site-branch
+          ref: site13
+      - run: |
+          #rm -rf fybrik-site-branch/fybrik
+          #rm -rf fybrik-site-branch/openapi2crd
+          #rm -rf fybrik-site-branch/crdoc
+          make -C vanity-imports generate
+          cp -r vanity-imports/vangen/fybrik fybrik-site-branch
+          cp -r vanity-imports/vangen/openapi2crd fybrik-site-branch
+          cp -r vanity-imports/vangen/crdoc fybrik-site-branch
+      - uses: tibdex/github-app-token@v1
+        id: generate-token
+        with:
+          app_id: ${{ secrets.CHARTS_APP_ID }}
+          private_key: ${{ secrets.CHARTS_APP_PRIVATE_KEY }}
+          repository: revit13/the-mesh-for-data
+          ref: site13
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          path: fybrik-site-branch
+          branch: site13
+          signoff: true
+          token: ${{ steps.generate-token.outputs.token }}
+          title: 'Update charts to new release'
+          commit-message: "Update vanity imports"
+          committer: GitHub <noreply@github.com>
+          delete-branch: true
 
-        
