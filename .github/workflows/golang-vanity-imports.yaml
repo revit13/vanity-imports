@@ -33,13 +33,13 @@ jobs:
           ls 
           rm -rf fybrik
           rm -rf openapi2crd
-          rm -rf crdoc
-          cp -rf ../vangen/fybrik .
+          rm -rf crdo
+          cp -rf ../vangen/fybrik revittt
           cp -rf ../vangen/openapi2crd .
           cp -rf ../vangen/crdoc .
           echo "ls!!!"
           ls
-          git add fybrik openapi2crd crdoc
+          git add revittt openapi2crd crdoc
           git commit -m "Commit for vanity go imports"
-          git push origin HEAD:gh_actions3
+          git push origin HEAD:gh_actions
         
