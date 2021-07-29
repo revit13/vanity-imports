@@ -1,5 +1,11 @@
-name: Website Deploy
+name: Generate Golang Vanity Imports
 on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'     
+        required: true
+        default: 'warning'
   push:
     tags:
       - 'v*'
