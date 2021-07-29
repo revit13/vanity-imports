@@ -31,6 +31,7 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
           source-directory: vangen
+          user-email: "noreply@github.com"
           destination-repository-name: 'test-vanity-imports'
           destination-github-username: 'revit13'
           target-branch: gh_actions
