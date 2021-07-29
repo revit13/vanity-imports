@@ -20,9 +20,9 @@ jobs:
           path: fybrik-site-branch
           ref: site13
       - run: |
-          #rm -rf fybrik-site-branch/fybrik
-          #rm -rf fybrik-site-branch/openapi2crd
-          #rm -rf fybrik-site-branch/crdoc
+          rm -rf fybrik-site-branch/fybrik
+          rm -rf fybrik-site-branch/openapi2crd
+          rm -rf fybrik-site-branch/crdoc
           make -C vanity-imports generate
           cp -r vanity-imports/vangen/fybrik fybrik-site-branch
           cp -r vanity-imports/vangen/openapi2crd fybrik-site-branch
