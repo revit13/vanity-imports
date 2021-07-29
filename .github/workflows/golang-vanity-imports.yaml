@@ -30,9 +30,15 @@ jobs:
           git checkout origin/gh_actions
           echo "ls !!!"
           ls 
+          rm -rf fybrik
+          rm -rf openapi2crd
+          rm -rf crdoc
+          cp -rf ../fybrik .
+          cp -rf ../openapi2crd .
+          cp -rf ../crdoc .
           echo "ls!!!"
           ls
-          git add ../fybrik ../openapi2crd ../crdoc
+          git add fybrik openapi2crd crdoc
           git commit -m "Commit for vanity go imports"
           git push origin HEAD:gh_actions3
         
