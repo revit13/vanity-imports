@@ -25,6 +25,7 @@ jobs:
         working-directory: ./
         run: |
           make generate
+          ls -l
           git clone https://github.com/revit13/test-vanity-imports.git
           cd test-vanity-imports/
           git checkout origin/gh_actions
