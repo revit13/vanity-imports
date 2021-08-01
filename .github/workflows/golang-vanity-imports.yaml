@@ -2,12 +2,11 @@ name: Golang Vanity Imports
 
 on:
   repository_dispatch:
-    types: trigger-vanity-import-update
+    types: [vanity-import-update]
 
 jobs:
-  build:
-    name: Golang Vanity Imports
-    runs-on: ubuntu-latest
+  updateVanityImports:
+    runs-on: [ubuntu-latest]
     steps:
       - name: Checkout vanity-imports repository
         uses: actions/checkout@v2
