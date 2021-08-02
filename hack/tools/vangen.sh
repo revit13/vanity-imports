@@ -1,5 +1,4 @@
 #!/bin/bash -e
-cd ${args[0]}
 package=$(go list)
 domain=${package%/*}
 prefix=${package#*/}
