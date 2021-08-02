@@ -38,6 +38,9 @@ jobs:
           cd fybrik-repo; ./vangen.sh; cd ..
           cp fybrik-repo/vangen.json vanity-imports/
           make -C vanity-imports generate
+          echo "ls"
+          ls vanity-imports
+          echo "end"
           cp vanity-imports/hack/tools/vangen.sh openapi2crd-repo
           cd openapi2crd-repo; ./vangen.sh; cd ..     
           cp openapi2crd-repo/vangen.json vanity-imports/
