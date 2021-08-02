@@ -21,10 +21,6 @@ jobs:
       - name: Checkout crdoc repository
         repository: revit13/crdoc
         path: crdoc-repo
-      - run:
-        make REPO=fybrik-repo -C vanity-imports generate
-        make REPO=crdoc-repo -C vanity-imports generate
-        make REPO=openapi2crd-repo -C vanity-imports generate
       - name: Checkout site branch
         uses: actions/checkout@v2
         with:
