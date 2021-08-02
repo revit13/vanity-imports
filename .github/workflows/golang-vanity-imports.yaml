@@ -12,6 +12,19 @@ jobs:
         uses: actions/checkout@v2
         with:
           path: vanity-imports
+      - name: Checkout fybrik repository
+        repository: revit13/the-mesh-for-data
+        path: fybrik-repo
+      - name: Checkout openapi2crd repository
+        repository: revit13/openapi2crd
+        path: openapi2crd-repo
+      - name: Checkout crdoc repository
+        repository: revit13/crdoc
+        path: crdoc-repo
+      - run:
+        make REPO=fybrik-repo -C vanity-imports generate
+        make REPO=crdoc-repo -C vanity-imports generate
+        make REPO=openapi2crd-repo -C vanity-imports generate
       - name: Checkout site branch
         uses: actions/checkout@v2
         with:
@@ -19,6 +32,21 @@ jobs:
           path: fybrik-site-branch
           ref: site13
       - run: |
+          cp vanity-imports/hack/tools/vangen.sh fybrik-repo
+          cd fybrik-repo; ./vangen.sh; cd ..
+          cp fybrik-repo/vangen.json vanity-imports/
+          make -C vanity-imports generate
+          cp vanity-imports/hack/tools/vangen.sh openapi2crd-repo
+          cd openapi2crd-repo; ./vangen.sh; cd ..     
+          cp openapi2crd-repo/vangen.json vanity-imports/
+          make -C vanity-imports generate 
+          cp vanity-imports/hack/tools/vangen.sh crdoc-repo
+          cd crdoc-repo; ./vangen.sh; cd ..
+          cp crdoc-repo/vangen.json vanity-imports/
+          make -C vanity-imports generate
+          ls vanity-imports/
+          ls vanity-imports/vangen
+          
           rm -rf fybrik-site-branch/fybrik
           rm -rf fybrik-site-branch/openapi2crd
           rm -rf fybrik-site-branch/crdoc
