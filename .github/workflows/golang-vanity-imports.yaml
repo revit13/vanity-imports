@@ -13,14 +13,20 @@ jobs:
         with:
           path: vanity-imports
       - name: Checkout fybrik repository
-        repository: revit13/the-mesh-for-data
-        path: fybrik-repo
+        uses: actions/checkout@v2
+        with:
+          repository: revit13/the-mesh-for-data
+          path: fybrik-repo
       - name: Checkout openapi2crd repository
-        repository: revit13/openapi2crd
-        path: openapi2crd-repo
+        uses: actions/checkout@v2
+        with:
+          repository: revit13/openapi2crd
+          path: openapi2crd-repo
       - name: Checkout crdoc repository
-        repository: revit13/crdoc
-        path: crdoc-repo
+        uses: actions/checkout@v2
+        with:
+          repository: revit13/crdoc
+          path: crdoc-repo
       - name: Checkout site branch
         uses: actions/checkout@v2
         with:
